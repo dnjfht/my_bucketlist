@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 const BucketWrap = styled.div`
   width: 100%;
   height: 160px;
+  margin-bottom: 10px;
 
   overflow: scroll;
 
@@ -28,7 +29,9 @@ export default function List({ isActive }) {
 
   return (
     <div style={{ height: "180px", marginBottom: "30px" }}>
-      <h2 style={{ margin: 0 }}>{isActive === true ? "ACTIVE💖" : "DONE💘"}</h2>
+      <h2 style={{ marginBottom: 8 }}>
+        {isActive === true ? "ACTIVE💖" : "DONE💘"}
+      </h2>
 
       <BucketWrap>
         {bucketList

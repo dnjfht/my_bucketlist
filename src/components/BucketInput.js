@@ -80,6 +80,7 @@ export default function BucketInput() {
       isActive: true,
       title: TitleRef.current.value,
       content: ContentRef.current.value,
+      isEdit: false,
     };
 
     dispatch(add_bucket(newMyBucket));

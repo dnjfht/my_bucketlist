@@ -3,12 +3,36 @@ import { v4 as uuidv4 } from "uuid";
 // action value
 
 const ADDBUCKET = "add_bucket";
+const CHANGESWITCH = "change_switch";
+const DELETEBUCKET = "delete_bucket";
+const EDITBUCKET = "edit_bucket";
 
 // action creator
 
 export const add_bucket = (payload) => {
   return {
     type: ADDBUCKET,
+    payload: payload,
+  };
+};
+
+export const change_switch = (payload) => {
+  return {
+    type: CHANGESWITCH,
+    payload: payload,
+  };
+};
+
+export const delete_bucket = (payload) => {
+  return {
+    type: DELETEBUCKET,
+    payload: payload,
+  };
+};
+
+export const edit_bucket = (payload) => {
+  return {
+    type: EDITBUCKET,
     payload: payload,
   };
 };
@@ -47,6 +71,33 @@ const bucket = (state = initialState, action) => {
   switch (action.type) {
     case ADDBUCKET: {
       return [...state, action.payload];
+    }
+    case CHANGESWITCH: {
+      return state.map((bucket) => {
+        if (bucket.id === action.payload) {
+          return { ...bucket, isActive: !bucket.isActive };
+        } else {
+          return bucket;
+        }
+      });
+    }
+    case DELETEBUCKET: {
+      return state.filter((bucket) => {
+        return bucket.id !== action.payload;
+      });
+    }
+    case EDITBUCKET: {
+      return state.map((bucket) => {
+        if (bucket.id === action.payload.id) {
+          return {
+            ...bucket,
+            title: action.payload.newTitle,
+            content: action.payload.newContent,
+          };
+        } else {
+          return bucket;
+        }
+      });
     }
     default:
       return state;
