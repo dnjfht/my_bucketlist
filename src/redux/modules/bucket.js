@@ -48,7 +48,7 @@ const initialState = [
   {
     id: uuidv4(),
     isActive: true,
-    title: "살 10kg 뺴기",
+    title: "살 10kg 빼기",
     content: "운동 꾸준히 하는게 중요함",
   },
   {

@@ -13,6 +13,7 @@ import { AiTwotoneEdit } from "react-icons/ai";
 import { AiFillCheckCircle } from "react-icons/ai";
 
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Button = styled.button`
   background-color: transparent;
@@ -23,13 +24,14 @@ const Button = styled.button`
 
 export default function Bucket({ bucket }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const bucketList = useSelector((state) => state.bucket);
   console.log(bucketList);
 
   const [edit, setEdit] = useState(false);
-  const [newTitle, setNewTitle] = useState("");
-  const [newContent, setNewContent] = useState("");
+  const [newTitle, setNewTitle] = useState(bucket.title);
+  const [newContent, setNewContent] = useState(bucket.content);
 
   const handleEditBucket = () => {
     setEdit((prev) => !prev);
@@ -64,7 +66,11 @@ export default function Bucket({ bucket }) {
         alignItems: "center",
       }}
     >
-      <div>
+      <div
+        onClick={() => {
+          navigate(`/detail/${bucket.id}`);
+        }}
+      >
         <h3 style={{ color: "white" }}>{bucket.title}</h3>
         <p style={{ color: "white" }}>{bucket.content}</p>
       </div>
