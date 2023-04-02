@@ -4,6 +4,7 @@ import BucketInput from "./components/BucketInput";
 import Bucketlist from "./components/Bucketlist";
 import image from "./img/bg.png";
 import image2 from "./img/bg2.jpg";
+import Router from "./shared/Router";
 
 const Wrap = styled.div`
   width: 100%;
@@ -52,7 +53,7 @@ function App() {
       <WrapBg>
         <Container>
           <Title>MY BUCKETLIST</Title>
-          <Bucketlist />
+          <Router />
           <BucketInput />
         </Container>
       </WrapBg>
